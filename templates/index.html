@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Makuja</title>
+</head>
+
+<body>
+    <h1>Makuja</h1>
+  <p>
+    Makuja on ravintola-arvostelusovellus.
+  </p> 
+  {% if session.username %}
+  <p>
+    Olet kirjautunut nimellä {{ session.username }}
+  </p>
+  <p>
+    <a href="/logout">Kirjaudu ulos</a>
+  </p>
+  {% else %}
+    <a href="/login">Kirjaudu sisään</a>
+    <a href="/register">Luo käyttäjätunnus</a>
+
+  {% endif %}
+</body>
+
+</html>
