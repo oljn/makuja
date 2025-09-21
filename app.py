@@ -4,6 +4,7 @@ from flask import redirect, render_template, request, session
 from werkzeug.security import generate_password_hash, check_password_hash
 import db
 import config
+import restaurants
 
 app = Flask(__name__)
 app.secret_key = config.secret_key
@@ -26,13 +27,8 @@ def create_restaurant():
     restaurant_address = request.form["restaurant_address"]
     restaurant_description = request.form["restaurant_description"]
 
-    try:
-        sql = "INSERT INTO restaurants (restaurant_name, restaurant_address, restaurant_description) VALUES (?, ?, ?)"
-        db.execute(sql, [restaurant_name, restaurant_address, restaurant_description])
-    except sqlite3.IntegrityError:
-        return "Virhe: tämänniminen ravintola on jo lisätty palveluun." #does not work currently, but not extremely relevant. will be fixed later.
-
-    return "Ravintola lisätty."
+    restaurants.add_restaurant(restaurant_name, restaurant_address, restaurant_description)
+    return redirect("/")
 
 @app.route("/create", methods=["POST"])
 def create():
