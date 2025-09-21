@@ -12,9 +12,27 @@ app.secret_key = config.secret_key
 def index():
     return render_template("index.html")
 
+@app.route("/add_restaurant")
+def add_restaurant():
+    return render_template("add_restaurant.html")
+
 @app.route("/register")
 def register():
     return render_template("register.html")
+
+@app.route("/new_restaurant", methods=["POST"])
+def create_restaurant():
+    restaurant_name = request.form["restaurant_name"]
+    restaurant_address = request.form["restaurant_address"]
+    restaurant_description = request.form["restaurant_description"]
+
+    try:
+        sql = "INSERT INTO restaurants (restaurant_name, restaurant_address, restaurant_description) VALUES (?, ?, ?)"
+        db.execute(sql, [restaurant_name, restaurant_address, restaurant_description])
+    except sqlite3.IntegrityError:
+        return "Virhe: tämänniminen ravintola on jo lisätty palveluun." #does not work currently, but not extremely relevant. will be fixed later.
+
+    return "Ravintola lisätty."
 
 @app.route("/create", methods=["POST"])
 def create():

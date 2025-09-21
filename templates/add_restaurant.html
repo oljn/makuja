@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Lisää ravintola</title>
+</head>
+
+<body>
+    <h1>Lisää uusi ravintola</h1>
+
+  <form action="/new_restaurant" method="post">
+    <p>
+      Ravintolan nimi: <br />
+      <input type="text" name="restaurant_name" />
+    </p>
+    <p>
+      Ravintolan osoite: <br />
+      <input type="text" name="restaurant_address" />
+    </p>
+    <p>
+    Muistathan kertoa ravintolan kuvauksessa vain objektiivisia tietoja ravintolasta.
+    </p>
+    <p>
+    Voit lisätä oman arvostelusi palveluun, kun olet ensin lisännyt ravintolan sovellukseen.
+    </p>
+<!--Mahdollisuus lisätä arvosteluja tullaan lisäämään sovellukseen myöhemmin-->
+    <p>
+    Ravintolan kuvaus: <br />
+    <textarea name="restaurant_description" rows="6" cols="60"></textarea>
+    </p>
+    <input type="submit" value="Lisää ravintola sovellukseen" />
+  </form>
+</body>
+
+</html>
