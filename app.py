@@ -21,6 +21,17 @@ def add_restaurant():
 def register():
     return render_template("register.html")
 
+@app.route("/restaurants")
+def list_restaurants():
+    all_restaurants = restaurants.get_restaurants()
+    return render_template("restaurants.html", restaurants=all_restaurants)
+
+@app.route("/restaurant/<int:restaurant_id>")
+def show_restaurant(restaurant_id):
+    restaurant=restaurants.get_restaurant(restaurant_id)
+    return render_template("restaurant_page.html", restaurant=restaurant)
+
+
 @app.route("/new_restaurant", methods=["POST"])
 def create_restaurant():
     restaurant_name = request.form["restaurant_name"]

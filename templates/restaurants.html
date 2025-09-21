@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ravintolat</title>
+</head>
+
+<body>
+    <h1>Kaikki ravintolat</h1>
+    <ul>
+        {% for restaurant in restaurants %}
+        <li><a href="/restaurant/{{restaurant.id}}">{{restaurant.restaurant_name}}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
